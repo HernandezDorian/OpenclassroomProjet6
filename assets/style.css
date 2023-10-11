@@ -56,11 +56,12 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background: #FFFEF8;
 }
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
 }
 section {
 	margin: 50px 0
@@ -101,6 +102,7 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+	cursor: pointer;
 }
 #introduction {
 	display: flex;
@@ -138,7 +140,19 @@ li:hover {
 	gap: 10px
 }
 
-.filter{
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+
+.filter, .login-btn{
 	border-radius: 60px;
 	border: 1px solid #1D6154;
 	background: #1D6154;
@@ -152,7 +166,8 @@ li:hover {
 	line-height: normal;
 }
 
-.filter:hover{
+
+.filter:hover, .login-btn:hover{
     background: #3cb49e;
 	border: 1px solid #3cb49e;
     color: #FFF;
@@ -212,20 +227,64 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px ;
-}
-
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	padding: 2em;
+	background-color: #FFFFFF;
+	
 }
 
+/* Login page */
+#body-login{
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+#main-login{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: auto;
+}
+
+#login{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 37px;
+}
+
+#login div{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+	width: 379px;
+	margin-top: 30px;
+}
+
+#login div input{
+	height: 51px;
+}
+
+#login p{
+	color: #3D3D3D;
+	line-height: normal;
+}
+
+#login a{
+    color: #3D3D3D;
+	line-height: normal;
+	text-decoration-line: underline;
+}
+
+#login a:hover {
+	color: #B1663C;
+	cursor: pointer;
+}
+
+/* #footer-login{
+	display: flex;
+	justify-content: end;
+} */
