@@ -125,6 +125,45 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filter-sec{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 60px 0;
+	gap: 10px
+}
+
+.filter{
+	border-radius: 60px;
+	border: 1px solid #1D6154;
+	background: #1D6154;
+	color: #FFF;
+	padding: 9px 30px;
+	text-align: center;
+	font-family: Syne;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.filter:hover{
+    background: #3cb49e;
+	border: 1px solid #3cb49e;
+    color: #FFF;
+}
+
+.filter-selec{
+	background: #FFF;
+	color: #1D6154;
+}
+
+.filter-selec:hover{
+    background: #FFF;
+	color: #1D6154;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
