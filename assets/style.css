@@ -284,7 +284,55 @@ footer nav ul {
 	cursor: pointer;
 }
 
+.errorform{
+	animation: error 0.4s ease-in-out;
+	border: 1px solid black;
+}
+
+.errormessage{
+	color: red !important;
+}
+
 /* #footer-login{
 	display: flex;
 	justify-content: end;
 } */
+
+/* Animations */
+
+@keyframes error {
+	0% {
+		border: 1px solid red;
+		translate: 0, 0;
+    }
+	10%{
+		translate: 3px 0;
+	}
+	20%{
+		translate: 0 3px;
+	}
+	30%{
+		translate: -3px 0;
+	}
+	40%{
+        translate: 0 -3px;
+    }
+	50%{
+        translate: 3px 0;
+    }
+	60%{
+        translate: 0 3px;
+    }
+	70%{
+        translate: -3px 0;
+    }
+	80%{
+        translate: 0 -3px;
+    }
+	90%{
+		translate: 0, 0;
+	}
+	100% {
+        border: 1px solid black;
+    }
+}
