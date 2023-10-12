@@ -9,3 +9,13 @@ export async function getCategories(){
     let reponse = await repCategories.json();
     return reponse;
 }
+
+export async function postLogin(data){
+    fetch("http://localhost:5678/api/users/login", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data)
+      }).then(res => {
+        console.log("Request complete! response:", res);
+      });
+};

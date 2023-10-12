@@ -1,4 +1,7 @@
-let isAlreadyHeremail = false;
+import { postLogin } from "./requests.js";
+
+
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -6,6 +9,7 @@ function sleep(ms) {
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const submit = document.querySelector('#submit');
+
 
 function validateEmail(str) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -19,7 +23,7 @@ function incorrect(parent, message){
         error.classList.add('errormessage');
         error.textContent = message;
         div.appendChild(error);
-        return isAlreadyHeremail = true; 
+
 };
 
 submit.addEventListener('click', (e) => {
@@ -60,6 +64,16 @@ submit.addEventListener('click', (e) => {
 
     if (validmail && validpass) {
         console.log(email.value + " " + password.value);
+        let data = {
+            "email": email.value,
+            "password": password.value
+        };
+        console.log(JSON.stringify(data))
+        postLogin(data)
     }
     
+    
 });
+
+
+// postLogin(data)

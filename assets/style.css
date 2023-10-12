@@ -288,7 +288,6 @@ footer nav ul {
 	animation: error 0.4s ease-in-out;
 	border: 1px solid black;
 }
-
 .errormessage{
 	color: red !important;
 }
