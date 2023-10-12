@@ -23,9 +23,10 @@ function incorrect(parent, message){
 };
 
 submit.addEventListener('click', (e) => {
+    let validmail = false;
+    let validpass = false;
     e.preventDefault();
     const errormessage = document.querySelectorAll(".errormessage")
-    console.log(errormessage)
     if(errormessage.length > 0){
         for (let index = 0; index < errormessage.length; index++) {
             errormessage[index].parentNode.removeChild(errormessage[index]);
@@ -34,7 +35,7 @@ submit.addEventListener('click', (e) => {
     
     // Vérifier la validité du champ email
     if (validateEmail(email.value)){
-        console.log(email.value + " " + password.value);
+        validmail = true;
     }
     else {
 
@@ -42,17 +43,23 @@ submit.addEventListener('click', (e) => {
         incorrect("#maildiv","L'email n'est pas conforme")
         sleep(500).then(() => { email.classList.remove('errorform'); });
         console.log("erreur dans l'email");
+        validmail = false;
     }
 
     if (password.value != ""){
-        console.log(email.value + " " + password.value);
+        validpass = true;
     }
     else {
 
-        email.classList.add('errorform');
+        password.classList.add('errorform');
         incorrect("#passdiv","Le mot de passe est vide")
-        sleep(500).then(() => { email.classList.remove('errorform'); });
-        console.log("erreur dans l'email");
+        sleep(500).then(() => { password.classList.remove('errorform'); });
+        console.log("erreur dans le mot de passe");
+        validpass = false;
+    }
+
+    if (validmail && validpass) {
+        console.log(email.value + " " + password.value);
     }
     
 });
