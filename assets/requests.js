@@ -1,17 +1,28 @@
 export async function getWorks(){
-    const repWorks = await fetch('http://localhost:5678/api/works')
-    let reponse = await repWorks.json();
-    return reponse;
+    try {
+        const repWorks = await fetch('http://localhost:5678/api/works')
+        let reponse = await repWorks.json();
+        return reponse;
+    } catch (error) {
+        console.error("Erreur dans le getWorks");
+    }
+    
 }
 
 export async function getCategories(){
-    const repCategories = await fetch('http://localhost:5678/api/categories')
-    let reponse = await repCategories.json();
-    return reponse;
+    try {
+        const repCategories = await fetch('http://localhost:5678/api/categories')
+        let reponse = await repCategories.json();
+        return reponse;
+    } catch (error) {
+        console.error("Erreur dans le getCategories");
+    }
+    
 }
 
 export async function postLogin(data){
-    const resp = await fetch("http://localhost:5678/api/users/login", {
+    try {
+        const resp = await fetch("http://localhost:5678/api/users/login", {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(data)
@@ -19,5 +30,8 @@ export async function postLogin(data){
         const dataGet = await resp.json();
         localStorage.setItem("loginData", JSON.stringify(dataGet));
         return resp;
-
+    } catch (error) {
+        console.error("Erreur dans le postLogin");
+    }
+    
 };

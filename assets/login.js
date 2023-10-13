@@ -67,7 +67,7 @@ submit.addEventListener('click', (e) => {
         console.log("erreur dans le mot de passe");
         validpass = false;
     }
-
+try {
     if (validmail && validpass) {
         console.log(email.value + " " + password.value);
         let data = {
@@ -85,7 +85,9 @@ submit.addEventListener('click', (e) => {
         })
         console.log(validatelogin());
     }
-    
+} catch (error) {
+    console.log("Erreur dans l'envoie des identifiants de connexion a postLogin")
+}
     
 });
 
