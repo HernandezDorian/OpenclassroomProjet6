@@ -18,5 +18,6 @@ export async function postLogin(data){
       })
         const dataGet = await resp.json();
         localStorage.setItem("loginData", JSON.stringify(dataGet));
+        return resp;
 
 };

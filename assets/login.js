@@ -76,7 +76,13 @@ submit.addEventListener('click', (e) => {
         };
         console.log(JSON.stringify(data))
      
-        postLogin(data)
+        postLogin(data).then((resp) => {
+            if (resp.status === 200) {
+                window.location.href = "./index.html";
+            }
+
+            
+        })
         console.log(validatelogin());
     }
     

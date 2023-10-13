@@ -97,3 +97,12 @@ function setProjets(listeProjets){
 setFilter();
 setProjets(works);
 filterSelec();
+try {
+    let logindata = localStorage.getItem('loginData');
+    logindata = JSON.parse(logindata);
+    console.log(logindata.token);
+    console.log(logindata.userId);
+
+} catch (error) {
+    console.log("Non authentifié")
+}
