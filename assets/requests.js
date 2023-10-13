@@ -11,11 +11,12 @@ export async function getCategories(){
 }
 
 export async function postLogin(data){
-    fetch("http://localhost:5678/api/users/login", {
+    const resp = await fetch("http://localhost:5678/api/users/login", {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(data)
-      }).then(res => {
-        console.log("Request complete! response:", res);
-      });
+      })
+        const dataGet = await resp.json();
+        localStorage.setItem("loginData", JSON.stringify(dataGet));
+
 };

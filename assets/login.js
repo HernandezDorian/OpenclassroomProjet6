@@ -6,6 +6,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const submit = document.querySelector('#submit');
@@ -24,6 +25,11 @@ function incorrect(parent, message){
         error.textContent = message;
         div.appendChild(error);
 
+};
+
+async function validatelogin(){
+    let test = await localStorage.getItem('loginData')
+    return test;
 };
 
 submit.addEventListener('click', (e) => {
@@ -69,11 +75,12 @@ submit.addEventListener('click', (e) => {
             "password": password.value
         };
         console.log(JSON.stringify(data))
+     
         postLogin(data)
+        console.log(validatelogin());
     }
     
     
 });
-
 
 // postLogin(data)
