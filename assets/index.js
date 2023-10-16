@@ -1,12 +1,7 @@
 import { getWorks, getCategories } from "./requests.js";
 
-try {
-    
-} catch (error) {
-    
-}
-let works = await getWorks();
 
+let works = await getWorks();
 let categories = await getCategories();
 
 
