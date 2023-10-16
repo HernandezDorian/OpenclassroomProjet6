@@ -129,8 +129,78 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
+	
+}
+
+/* modif button */
+.titleportfolio{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 31px;
 	margin-bottom: 1em;
 }
+.modif{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	gap: 12.42px;
+	cursor: pointer;
+}
+
+/* Modal */
+
+.modal{
+	display: flex;
+	flex-direction: column;
+	background-color: #fff;
+	width: 630px;
+	height: 688px;
+	align-items: center;
+	position: fixed;
+	top: 50%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+	border-radius: 10px;
+}
+
+.modalmenu{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.modal__cross{
+	width: 24px;
+	height: 24px;
+	align-self: end;
+	padding: 26px;
+	cursor: pointer;
+}
+.modal__arrow{
+	width: 21px;
+	height: 21px;
+	padding: 29px;
+	cursor: pointer;
+}
+.modal__title{
+	color: #000;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 26px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+.modal__list{
+	display: flex;
+	flex-wrap: wrap;
+}
+.invisible{
+	visibility: hidden;
+}
+
 
 .filter-sec{
 	display: flex;

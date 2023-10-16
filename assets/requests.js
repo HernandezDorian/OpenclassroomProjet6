@@ -27,11 +27,38 @@ export async function postLogin(data){
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(data)
       })
+
         const dataGet = await resp.json();
+
         localStorage.setItem("loginData", JSON.stringify(dataGet));
+
         return resp;
+        
     } catch (error) {
         console.error("Erreur dans le postLogin");
+    }
+    
+};
+
+export async function postWorks(data){
+    try {
+        let loginData = localStorage.getItem('loginData');
+        loginData = JSON.parse(loginData);
+        console.log(loginData.token);
+
+        const resp = await fetch("http://localhost:5678/api/users/login", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${loginData.token}`}, 
+        body: JSON.stringify(data)
+      })
+
+        const dataGet = await resp.json();
+        
+        return resp;
+
+    } catch (error) {
+        console.error("Erreur dans le postWorks: " +error);
     }
     
 };

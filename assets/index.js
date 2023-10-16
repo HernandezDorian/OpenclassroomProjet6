@@ -97,12 +97,69 @@ function setProjets(listeProjets){
 setFilter();
 setProjets(works);
 filterSelec();
+
 try {
-    let logindata = localStorage.getItem('loginData');
-    logindata = JSON.parse(logindata);
-    console.log(logindata.token);
-    console.log(logindata.userId);
+        let loginData = localStorage.getItem('loginData');
+        loginData = JSON.parse(loginData);
+
+        console.log("info: " + loginData.token + " | " +  loginData.userId + " | " + loginData)
+
+        const modif = document.querySelector('.modif');
+
+        const textElement = document.createElement('p');
+        textElement.innerText = "modifier"
+
+        const imgElement = document.createElement('img');
+        imgElement.src = "assets/icons/modif.svg"
+
+        modif.appendChild(textElement);
+        modif.appendChild(imgElement);
+
+        modif.addEventListener('click', (e) => {
+            const body = document.querySelector('body');
+            
+            const modal = document.createElement('div');
+            modal.classList.add('modal');
+
+            const modalmenuElement = document.createElement('div');
+            modalmenuElement.classList.add('modalmenu');
+
+            const arrowElement = document.createElement('img');
+            arrowElement.src = "assets/icons/arrow.svg";
+            arrowElement.classList.add('modal__arrow', 'invisible');
+
+            const crossElement = document.createElement('img');
+            crossElement.src = "assets/icons/xmark.svg";
+            crossElement.classList.add('modal__cross');
+
+            const modalTitleElement = document.createElement('h1');
+            modalTitleElement.innerText = "Galerie photo";
+            modalTitleElement.classList.add('modal__title');
+
+            const modalListElement = document.createElement('div');
+            modalListElement.innerHTML = ``
+            modalListElement.classList.add('modal__list');
+
+            
+            crossElement.addEventListener('click', (e)=>{
+
+            })
+
+            body.appendChild(modal);
+            modal.appendChild(modalmenuElement);
+            modalmenuElement.appendChild(arrowElement);
+            modalmenuElement.appendChild(crossElement);
+            modal.appendChild(modalTitleElement);
+
+            
+        })
+
+
+    // let logindata = localStorage.getItem('loginData');
+    // logindata = JSON.parse(logindata);
+    // console.log(logindata.token);
+    // console.log(logindata.userId);
 
 } catch (error) {
-    console.log("Non authentifié")
+    console.log("Non authentifié : " + error)
 }
