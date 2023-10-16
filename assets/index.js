@@ -124,9 +124,9 @@ try {
             const modalmenuElement = document.createElement('div');
             modalmenuElement.classList.add('modalmenu');
 
-            const arrowElement = document.createElement('img');
+            const arrowElement = document.createElement('div');
             arrowElement.src = "assets/icons/arrow.svg";
-            arrowElement.classList.add('modal__arrow', 'invisible');
+            // arrowElement.classList.add('modal__arrow', 'invisible');
 
             const crossElement = document.createElement('img');
             crossElement.src = "assets/icons/xmark.svg";
@@ -137,12 +137,30 @@ try {
             modalTitleElement.classList.add('modal__title');
 
             const modalListElement = document.createElement('div');
-            modalListElement.innerHTML = ``
+            // modalListElement.innerHTML = ``
             modalListElement.classList.add('modal__list');
+
+            function listElemModal(works, modalListElement) {
+                for (let index = 0; index < works.length; index++) {
+                    const element = works[index];
+                    console.log(element);
+                    
+                    const photoElement = document.createElement('div');
+                    photoElement.classList.add(`modalElem_${element.id}`);
+                    photoElement.classList.add('photoElement');
+                    modalListElement.appendChild(photoElement);
+                    photoElement.setAttribute('style', `background-image: url(${element.imageUrl})`);
+                    // modalListElement.classList.add('');
+                    
+                }
+            }
+
+            listElemModal(works, modalListElement)
 
             
             crossElement.addEventListener('click', (e)=>{
-
+                const modal = document.querySelector('.modal');
+                modal.parentNode.removeChild(modal);
             })
 
             body.appendChild(modal);
@@ -150,6 +168,9 @@ try {
             modalmenuElement.appendChild(arrowElement);
             modalmenuElement.appendChild(crossElement);
             modal.appendChild(modalTitleElement);
+            modal.appendChild(modalListElement);
+            
+            
 
             
         })

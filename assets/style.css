@@ -183,6 +183,9 @@ li:hover {
 	height: 21px;
 	padding: 29px;
 	cursor: pointer;
+	background-image: url(icons/arrow.svg);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 .modal__title{
 	color: #000;
@@ -192,13 +195,24 @@ li:hover {
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+	
 }
 .modal__list{
 	display: flex;
 	flex-wrap: wrap;
+	gap: 8px;
+	padding: 25px 100px;
 }
+
+.photoElement{
+	width: 76px;
+	height: 100px;
+	background-position: center;
+    background-size: contain;
+};
+
 .invisible{
-	visibility: hidden;
+	visibility: hidden !important;
 }
 
 
