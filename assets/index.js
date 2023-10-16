@@ -150,6 +150,13 @@ try {
                     photoElement.classList.add('photoElement');
                     modalListElement.appendChild(photoElement);
                     photoElement.setAttribute('style', `background-image: url(${element.imageUrl})`);
+                    const divtrash = document.createElement('div');
+                    divtrash.classList.add('divtrash');
+                    const trash = document.createElement('img');
+                    trash.classList.add('trash');
+                    trash.src="assets/icons/trash.svg";
+                    photoElement.appendChild(divtrash);
+                    divtrash.appendChild(trash);
                     // modalListElement.classList.add('');
                     
                 }

@@ -205,11 +205,35 @@ li:hover {
 }
 
 .photoElement{
+	display: flex;
+	flex-direction: column;
 	width: 76px;
 	height: 100px;
 	background-position: center;
     background-size: contain;
-};
+	align-items: flex-end;
+}
+
+.divtrash{
+	display: flex;
+	background-color: #000;
+	border-radius: 5px;
+	width: 17px;
+	height: 17px;
+	align-items: center;
+	justify-content: center;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.divtrash:hover{
+	background-color: red;
+}
+
+.trash{
+	width: 9px;
+	height: 11px;
+}
 
 .invisible{
 	visibility: hidden !important;
