@@ -159,21 +159,45 @@ try {
                 const divPictureElem = document.createElement('div');
                 divPictureElem.classList.add('modal__divpicture');
 
-                const PictureElem = document.createElement('img');
-                PictureElem.classList.add('modal__picture');
-                PictureElem.src = 'assets/icons/picture.svg';
+                const pictureElem = document.createElement('img');
+                pictureElem.classList.add('modal__picture');
+                pictureElem.src = 'assets/icons/picture.svg';
+                pictureElem.style.maxWidth = '200px';
 
                 const inputPictureElem = document.createElement('input');
                 inputPictureElem.type= 'file';
                 inputPictureElem.textContent = '';
                 inputPictureElem.accept='.gif,.jpg,.jpeg,.png'
+                inputPictureElem.style.display = 'none';
+                var loadFile = (event) => {
+                    pictureElem.src= URL.createObjectURL(event.target.files[0]);
+                };
+                
+                inputPictureElem.addEventListener('change', loadFile);
+
+                const buttonPictureElem = document.createElement('button');
+                buttonPictureElem.classList.add('btnUpload');
+                buttonPictureElem.addEventListener('click', (e)=>{
+                    inputPictureElem.click();
+                });
+                buttonPictureElem.innerText = 'Test'
+
+                
+                // var loadFile = function(event) {
+                //     var image = document.getElementById('output');
+                //     image.src = URL.createObjectURL(event.target.files[0]);
+                // };
+
+
+
 
                 
                 modalmenuElement.appendChild(modalArrowBack);
                 modalmenuElement.appendChild(crossElement);
                 modal.appendChild(divPictureElem);
-                divPictureElem.appendChild(PictureElem);
+                divPictureElem.appendChild(pictureElem);
                 divPictureElem.appendChild(inputPictureElem);
+                divPictureElem.appendChild(buttonPictureElem);
                 // Retour
                 modalArrowBack.addEventListener('click', (e) =>{
                     modal.innerHTML="";

@@ -48,8 +48,9 @@ export async function postWorks(data){
 
         const resp = await fetch("http://localhost:5678/api/users/login", {
         method: "POST",
-        headers: {'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${loginData.token}`}, 
+        headers: {'accept': 'application/json',
+                  'Authorization': `Bearer ${loginData.token}`,
+                  'Content-Type': 'multipart/form-data' }, 
         body: JSON.stringify(data)
       })
 
