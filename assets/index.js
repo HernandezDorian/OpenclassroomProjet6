@@ -140,6 +140,54 @@ try {
             // modalListElement.innerHTML = ``
             modalListElement.classList.add('modal__list');
 
+            const buttonAddPictureElement = document.createElement('input');
+            buttonAddPictureElement.type = 'submit';
+            buttonAddPictureElement.value = 'Ajouter une photo'
+            buttonAddPictureElement.classList.add('PostPicture')
+            // Upload photo 
+            buttonAddPictureElement.addEventListener('click', (e) =>{
+                e.preventDefault();
+                modalmenuElement.innerHTML = "";
+                modal.innerHTML = "";
+                modal.appendChild(modalmenuElement);
+                modal.appendChild(modalTitleElement);
+                modalTitleElement.innerText = "Ajout photo"
+                const modalArrowBack = document.createElement('img');
+                modalArrowBack.src = "assets/icons/arrow.svg" 
+                modalArrowBack.classList.add('modal__arrow');
+                
+                const divPictureElem = document.createElement('div');
+                divPictureElem.classList.add('modal__divpicture');
+
+                const PictureElem = document.createElement('img');
+                PictureElem.classList.add('modal__picture');
+                PictureElem.src = 'assets/icons/picture.svg';
+
+                const inputPictureElem = document.createElement('input');
+                inputPictureElem.type= 'file';
+                inputPictureElem.textContent = '';
+                inputPictureElem.accept='.gif,.jpg,.jpeg,.png'
+
+                
+                modalmenuElement.appendChild(modalArrowBack);
+                modalmenuElement.appendChild(crossElement);
+                modal.appendChild(divPictureElem);
+                divPictureElem.appendChild(PictureElem);
+                divPictureElem.appendChild(inputPictureElem);
+                // Retour
+                modalArrowBack.addEventListener('click', (e) =>{
+                    modal.innerHTML="";
+                    modalTitleElement.innerText = "Galerie photo"
+                    modal.appendChild(modalmenuElement);
+                    modalmenuElement.appendChild(arrowElement);
+                    modalmenuElement.appendChild(crossElement);
+                    modal.appendChild(modalTitleElement);
+                    modal.appendChild(modalListElement);
+                    modal.appendChild(buttonAddPictureElement);
+                })
+            })
+
+
             function listElemModal(works, modalListElement) {
                 for (let index = 0; index < works.length; index++) {
                     const element = works[index];
@@ -155,11 +203,13 @@ try {
                     const trash = document.createElement('img');
                     trash.classList.add('trash');
                     trash.src="assets/icons/trash.svg";
+
                     photoElement.appendChild(divtrash);
                     divtrash.appendChild(trash);
                     // modalListElement.classList.add('');
                     
                 }
+                
             }
 
             listElemModal(works, modalListElement)
@@ -176,6 +226,7 @@ try {
             modalmenuElement.appendChild(crossElement);
             modal.appendChild(modalTitleElement);
             modal.appendChild(modalListElement);
+            modal.appendChild(buttonAddPictureElement);
             
             
 

@@ -201,7 +201,22 @@ li:hover {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
-	padding: 25px 100px;
+	margin: 25px 100px;
+	padding-bottom: 25px;
+	border-bottom: 1px solid #B3B3B3;
+}
+
+.modal__divpicture{
+	display: flex;
+	flex-direction: column;
+	width: 420px;
+	height: 169px;
+	border-radius: 3px;
+	background: #E8F1F6;
+	margin-top: 36px;
+	align-items: center;
+	justify-content: center;
+
 }
 
 .photoElement{
@@ -233,6 +248,25 @@ li:hover {
 .trash{
 	width: 9px;
 	height: 11px;
+}
+
+.PostPicture{
+	display: flex;
+	padding: 10px 40px;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	cursor: pointer;
+	border: none;
+}
+
+.PostPicture:hover{
+	background: #3cb49e;
+
 }
 
 .invisible{
