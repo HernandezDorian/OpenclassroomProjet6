@@ -102,7 +102,7 @@ try {
         let loginData = localStorage.getItem('loginData');
         loginData = JSON.parse(loginData);
 
-        console.log("info: " + loginData.token + " | " +  loginData.userId + " | " + loginData)
+        // console.log("info: " + loginData.token + " | " +  loginData.userId + " | " + loginData)
 
         const modif = document.querySelector('.modif');
 
@@ -162,15 +162,24 @@ try {
                 const pictureElem = document.createElement('img');
                 pictureElem.classList.add('modal__picture');
                 pictureElem.src = 'assets/icons/picture.svg';
-                pictureElem.style.maxWidth = '200px';
+                pictureElem.style.maxWidth = '420px';
+                pictureElem.style.maxHeight = '169px';
 
                 const inputPictureElem = document.createElement('input');
                 inputPictureElem.type= 'file';
                 inputPictureElem.textContent = '';
-                inputPictureElem.accept='.gif,.jpg,.jpeg,.png'
+                inputPictureElem.accept='.jpg,.png';
                 inputPictureElem.style.display = 'none';
-                var loadFile = (event) => {
-                    pictureElem.src= URL.createObjectURL(event.target.files[0]);
+                var loadFile = (event) => { 
+                            if (event.target.files[0].size > 4000000)
+                                {
+                                    alert(`Fichier trop lourd max 4mo`);
+                                    
+                                } else {
+                                    pictureElem.src= URL.createObjectURL(event.target.files[0]);
+                                    buttonPictureElem.style.display = 'none';
+                                    infoPictureElem.style.display = 'none';
+                                }
                 };
                 
                 inputPictureElem.addEventListener('change', loadFile);
@@ -180,24 +189,74 @@ try {
                 buttonPictureElem.addEventListener('click', (e)=>{
                     inputPictureElem.click();
                 });
-                buttonPictureElem.innerText = 'Test'
+                buttonPictureElem.innerText = '+ Ajouter photo'
+
+                const infoPictureElem = document.createElement('p');
+                infoPictureElem.classList.add('infoUpload');
+                infoPictureElem.innerText = `jpg, png : 4mo max`;
+
+                const formPictureElem = document.createElement('form');
+                formPictureElem.classList.add('formPicture')
+
+                // const divFormPictureElem = document.createElement('div');
+                // divFormPictureElem.classList.add('divForm');
+
+                const titleLabelPictureElem = document.createElement('h3');
+                titleLabelPictureElem.innerHTML = 'Titre';
+
+                const titleFormPictureElem = document.createElement('input');
+                titleFormPictureElem.type = 'text';
+                titleFormPictureElem.classList.add('inputPicutreElem');
+
+                const catLabelPictureElem = document.createElement('h3');
+                catLabelPictureElem.innerHTML = 'Catégorie';
+
+                const catFormPictureElem = document.createElement('select');
+                // catFormPictureElem.type = 'select';
+                catFormPictureElem.classList.add('inputPicutreElem');
+
+                const defaultOption = document.createElement('option');
+                defaultOption.value = ''; 
+                catFormPictureElem.appendChild(defaultOption);
+
+                categories.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.text = category.name;
+                    catFormPictureElem.appendChild(option);
+                });
+
+                const validPictureButtonElem = document.createElement('input');
+                validPictureButtonElem.type = 'submit';
+                validPictureButtonElem.classList.add('PostPicture');
+
+                validPictureButtonElem.addEventListener((e)=>{
+                    e.preventDefault;
+                    let uploadImageData = {
+                        'image=': '',
+                        'title=': '',
+                        'category=': ''
+                    };
+                });
 
                 
-                // var loadFile = function(event) {
-                //     var image = document.getElementById('output');
-                //     image.src = URL.createObjectURL(event.target.files[0]);
-                // };
 
 
 
-
-                
                 modalmenuElement.appendChild(modalArrowBack);
                 modalmenuElement.appendChild(crossElement);
                 modal.appendChild(divPictureElem);
                 divPictureElem.appendChild(pictureElem);
                 divPictureElem.appendChild(inputPictureElem);
                 divPictureElem.appendChild(buttonPictureElem);
+                divPictureElem.appendChild(infoPictureElem);
+                modal.appendChild(formPictureElem);
+                formPictureElem.appendChild(titleLabelPictureElem);
+                formPictureElem.appendChild(titleFormPictureElem);
+                formPictureElem.appendChild(catLabelPictureElem);
+                formPictureElem.appendChild(catFormPictureElem);
+                modal.appendChild(validPictureButtonElem);
+
                 // Retour
                 modalArrowBack.addEventListener('click', (e) =>{
                     modal.innerHTML="";
@@ -208,6 +267,7 @@ try {
                     modal.appendChild(modalTitleElement);
                     modal.appendChild(modalListElement);
                     modal.appendChild(buttonAddPictureElement);
+
                 })
             })
 
@@ -215,7 +275,7 @@ try {
             function listElemModal(works, modalListElement) {
                 for (let index = 0; index < works.length; index++) {
                     const element = works[index];
-                    console.log(element);
+                    // console.log(element);
                     
                     const photoElement = document.createElement('div');
                     photoElement.classList.add(`modalElem_${element.id}`);
