@@ -1,4 +1,4 @@
-import { getWorks, getCategories } from "./requests.js";
+import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
 
 
 let works = await getWorks();
@@ -170,7 +170,7 @@ try {
                 inputPictureElem.textContent = '';
                 inputPictureElem.accept='.jpg,.png';
                 inputPictureElem.style.display = 'none';
-                var loadFile = (event) => { 
+                let loadFile = (event) => { 
                             if (event.target.files[0].size > 4000000)
                                 {
                                     alert(`Fichier trop lourd max 4mo`);
@@ -224,19 +224,39 @@ try {
                     option.value = category.id;
                     option.text = category.name;
                     catFormPictureElem.appendChild(option);
+                    
                 });
+
+                	
+                    
 
                 const validPictureButtonElem = document.createElement('input');
                 validPictureButtonElem.type = 'submit';
                 validPictureButtonElem.classList.add('PostPicture');
 
-                validPictureButtonElem.addEventListener((e)=>{
+                validPictureButtonElem.addEventListener('click', (e)=>{
                     e.preventDefault;
+                    let loginData = window.localStorage.getItem('loginData')
+                    loginData = JSON.parse(loginData);
                     let uploadImageData = {
-                        'image=': '',
-                        'title=': '',
-                        'category=': ''
+                        // "id": works.length+1,
+                        title: titleFormPictureElem.value,
+                        image: pictureElem.src,
+                        category: catFormPictureElem.value
+                        // "userId": loginData.userId
+
+                        // "id": works.length+1,
+                        // 'title': titleFormPictureElem.value,
+                        // 'imageUrl': pictureElem.src,
+                        // 'categoryId': catFormPictureElem.value,
+                        // "userId": loginData.userId
                     };
+                    
+                    console.log(uploadImageData);
+
+                    postWorks(uploadImageData)
+
+
                 });
 
                 
