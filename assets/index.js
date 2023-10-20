@@ -240,9 +240,9 @@ try {
                     loginData = JSON.parse(loginData);
                     let uploadImageData = {
                         // "id": works.length+1,
-                        title: titleFormPictureElem.value,
-                        image: pictureElem.src,
-                        category: catFormPictureElem.value
+                        title: titleFormPictureElem.value.trim(),
+                        image: pictureElem.src.trim(),
+                        category: catFormPictureElem.value.trim()
                         // "userId": loginData.userId
 
                         // "id": works.length+1,
