@@ -1,4 +1,5 @@
 import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
+import { convertToBase64 } from "./tool.js";
 
 
 let works = await getWorks();
@@ -170,6 +171,7 @@ try {
                 inputPictureElem.textContent = '';
                 inputPictureElem.accept='.jpg,.png';
                 inputPictureElem.style.display = 'none';
+                let file = ''
                 let loadFile = (event) => { 
                             if (event.target.files[0].size > 4000000)
                                 {
@@ -177,6 +179,7 @@ try {
                                     
                                 } else {
                                     pictureElem.src= URL.createObjectURL(event.target.files[0]);
+                                    file = event.target.files[0]
                                     buttonPictureElem.style.display = 'none';
                                     infoPictureElem.style.display = 'none';
                                 }
@@ -226,35 +229,27 @@ try {
                     catFormPictureElem.appendChild(option);
                     
                 });
-
-                	
                     
 
                 const validPictureButtonElem = document.createElement('input');
                 validPictureButtonElem.type = 'submit';
                 validPictureButtonElem.classList.add('PostPicture');
-
+                
                 validPictureButtonElem.addEventListener('click', (e)=>{
                     e.preventDefault;
                     let loginData = window.localStorage.getItem('loginData')
                     loginData = JSON.parse(loginData);
                     let uploadImageData = {
-                        // "id": works.length+1,
-                        title: titleFormPictureElem.value.trim(),
-                        image: pictureElem.src.trim(),
-                        category: catFormPictureElem.value.trim()
-                        // "userId": loginData.userId
-
-                        // "id": works.length+1,
-                        // 'title': titleFormPictureElem.value,
-                        // 'imageUrl': pictureElem.src,
-                        // 'categoryId': catFormPictureElem.value,
-                        // "userId": loginData.userId
+                        'title': titleFormPictureElem.value.trim(),
+                        'image': convertToBase64(file),
+                        'category': parseInt(catFormPictureElem.value)
                     };
                     
                     console.log(uploadImageData);
 
-                    postWorks(uploadImageData)
+                    postWorks(uploadImageData).then(resp => {
+                        console.log(resp);
+                    })
 
 
                 });

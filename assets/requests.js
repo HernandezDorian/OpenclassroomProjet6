@@ -44,40 +44,19 @@ export async function postWorks(data){
     try {
         let loginData = localStorage.getItem('loginData');
         loginData = JSON.parse(loginData);
-        // console.log (JSON.stringify(data))
-
-    //     const formData = new FormData();
-    // formData.append('image', data.image);
-    // formData.append('title', data.title);
-    // formData.append('category', data.category);
-
-    // for (const pair of formData.entries()) {
-    //     console.log(pair[0] + ', ' + pair[1]);
-    //   }
-
-        // const boundary = '--------------------------' + Math.random().toString(36).substr(2, 15);
-        // const contentTypeHeader = `multipart/form-data; boundary=${boundary}`;
-
+        console.log(data);
         const resp = await fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
-                //   'accept': 'application/json',
-                //   'Authorization': `Bearer ${loginData.token}`,
-                //   'Content-Type': 'multipart/form-data' 
-                'Content-Type': 'application/json',
+                // 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${loginData.token}`
-                
                 }, 
-        body: JSON.stringify(data)
+        body: data
       })
-
-
         return resp;
-
     } catch (error) {
         console.error("Erreur dans le postWorks: " +error);
     }
-    
 };
 
 export async function delWorks(data){
