@@ -45,13 +45,16 @@ export async function postWorks(data){
         let loginData = localStorage.getItem('loginData');
         loginData = JSON.parse(loginData);
         console.log(data);
+        const formData = new FormData();
+        formData.append('title', data.title);
+        formData.append('category', data.category);
+        formData.append('image', data.image);
         const resp = await fetch("http://localhost:5678/api/works", {
         method: "POST",
         headers: {
-                // 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${loginData.token}`
                 }, 
-        body: data
+        body: formData
       })
         return resp;
     } catch (error) {

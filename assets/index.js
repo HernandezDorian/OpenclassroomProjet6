@@ -1,5 +1,5 @@
 import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
-import { convertToBase64 } from "./tool.js";
+import { convertToBase64 } from "./modal.js";
 
 
 let works = await getWorks();
@@ -236,12 +236,12 @@ try {
                 validPictureButtonElem.classList.add('PostPicture');
                 
                 validPictureButtonElem.addEventListener('click', (e)=>{
-                    e.preventDefault;
+                    e.preventDefault();
                     let loginData = window.localStorage.getItem('loginData')
                     loginData = JSON.parse(loginData);
                     let uploadImageData = {
                         'title': titleFormPictureElem.value.trim(),
-                        'image': convertToBase64(file),
+                        'image': file,
                         'category': parseInt(catFormPictureElem.value)
                     };
                     
