@@ -74,8 +74,7 @@ export function openModal() { // Ouvrir le popup
     }
 }
 
-export function closeModal() { // Fermer le popup
-    
+export function closeModal(modal) { // Fermer le popup
     modal.parentNode.removeChild(modal);
 }
 
@@ -125,9 +124,14 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
                 
                 inputPictureElem.addEventListener('change', loadFile);
 
+                
+
                 const buttonPictureElem = document.createElement('button');
                 buttonPictureElem.classList.add('btnUpload');
-                buttonPictureElem.innerText = '+ Ajouter photo'
+                buttonPictureElem.innerText = '+ Ajouter photo';
+                buttonPictureElem.addEventListener('click', (e)=>{
+                    inputPictureElem.click();
+                });
 
                 const infoPictureElem = document.createElement('p');
                 infoPictureElem.classList.add('infoUpload');
@@ -164,15 +168,10 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
                     catFormPictureElem.appendChild(option);
                     
                 });
-                    
 
                 const validPictureButtonElem = document.createElement('input');
                 validPictureButtonElem.type = 'submit';
                 validPictureButtonElem.classList.add('PostPicture');
-
-                
-
-
 
                 modalmenuElement.appendChild(modalArrowBack);
                 modalmenuElement.appendChild(crossElement);
@@ -188,3 +187,23 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
                 formPictureElem.appendChild(catFormPictureElem);
                 modal.appendChild(validPictureButtonElem);
 }
+
+export function postImage(file, catFormPictureElem){
+
+        const titleFormPictureElem = document.querySelector('.inputPicutreElem'); 
+        console.log(titleFormPictureElem)
+        let loginData = window.localStorage.getItem('loginData')
+        loginData = JSON.parse(loginData);
+        let uploadImageData = {
+            'title': titleFormPictureElem.value.trim(),
+            'image': file,
+            'category': parseInt(catFormPictureElem.value)
+        };
+        
+        console.log(uploadImageData);
+
+        postWorks(uploadImageData).then(resp => {
+            console.log(resp);
+        })
+
+};

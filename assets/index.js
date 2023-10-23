@@ -1,5 +1,5 @@
 import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
-import { openModal, closeModal, uploadPhoto } from "./modal.js";
+import { openModal, closeModal, uploadPhoto, postImage } from "./modal.js";
 
 
 let works = await getWorks();
@@ -121,15 +121,37 @@ try {
        
             openModal(); // Ouvrir le popup
             
-            const cross = document.querySelector(".modal__cross") // La croix pour refermer le  popup
+            const cross = document.querySelector(".modal__cross")
+            
             cross.addEventListener('click', (e) => {
-                closeModal(); // Fermer le popup
+                const modal = document.querySelector('.modal');
+                closeModal(modal); // Fermer le popup
             })
 
-            const postPicture = document.querySelector(".PostPicture") // La croix pour refermer le  popup
+            const postPicture = document.querySelector(".PostPicture") // Accès a la fenêtre d'upload
             postPicture.addEventListener('click', (e) => {
                 e.preventDefault();
                 uploadPhoto(); // Se rendre dans la fenêtre d'upload
+                
+                cross.addEventListener('click', (e) => { // La croix pour refermer le  popup
+                    const modal = document.querySelector('.modal');
+                    closeModal(modal); // Fermer le popup
+                })
+                const arrrowBack = document.querySelector(".modal__arrow") 
+                    arrrowBack.addEventListener('click', (e) => {
+                        // const modal = document.querySelector('.modal');
+                        cross.click();
+                        modif.click();
+                })
+
+                const btnUpload = document.querySelector(".btnUpload");
+                
+                const validPictureButtonElem = document.querySelector(".PostPicture");
+                validPictureButtonElem.addEventListener('click', (e)=>{
+                    e.preventDefault();
+                    postImage(file, catFormPictureElem);
+                });
+
             })
 
         })
