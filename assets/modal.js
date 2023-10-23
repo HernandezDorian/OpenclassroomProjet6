@@ -82,7 +82,7 @@ export function closeModal() { // Fermer le popup
 export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
 
                 const modal = document.querySelector('.modal');
-                const modalmenuElement = document.querySelector('.modal__list');
+                const modalmenuElement = document.querySelector('.modalmenu');
                 const modalTitleElement = document.querySelector('.modal__title');
                 const crossElement = document.querySelector('.modal__cross');
 
