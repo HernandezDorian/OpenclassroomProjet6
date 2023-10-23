@@ -65,10 +65,13 @@ export async function postWorks(data){
 export async function delWorks(data){
 
     try {
+        console.log(data);
         let loginData = localStorage.getItem('loginData');
         loginData = JSON.parse(loginData);
 
-        const resp = await fetch('http://localhost:5678/api/works/'+data, { method: 'DELETE',
+        const resp = await fetch('http://localhost:5678/api/works/'+data, 
+        { 
+        method: 'DELETE',
         headers: {'Authorization': `Bearer ${loginData.token}`}
     })
     } catch (error) {

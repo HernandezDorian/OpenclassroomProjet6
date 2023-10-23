@@ -120,8 +120,30 @@ try {
         modif.addEventListener('click', (e) => { // Le bouton modifier sur la page
        
             openModal(); // Ouvrir le popup
+
+            const trash = document.querySelectorAll(".divtrash");
+            for (let index = 0; index < trash.length+1; index++) {
+                    const element = trash[index];
+                    if (index < works.length) {
+                        
+                        trash[index].addEventListener('click', (e) => {
+                            console.log()
+                            delWorks(works[index].id).then(resp => {
+                                window.location = window.location.href;
+                            })
+                            
+                        })
+                    }
+                    // console.log(element + " | " + index);
+                    
+                    // element.addEventListener('click', (e) => {
+    
+                    // });
+
+    
+            }
             
-            const cross = document.querySelector(".modal__cross")
+            const cross = document.querySelector(".modal__cross");
             
             cross.addEventListener('click', (e) => {
                 const modal = document.querySelector('.modal');
@@ -144,25 +166,18 @@ try {
                         modif.click();
                 })
 
-                const btnUpload = document.querySelector(".btnUpload");
+                // const btnUpload = document.querySelector(".btnUpload");
                 
                 const validPictureButtonElem = document.querySelector(".PostPicture");
                 validPictureButtonElem.addEventListener('click', (e)=>{
                     e.preventDefault();
-                    postImage(file, catFormPictureElem);
+                    postImage(); // Envoie d'image à l'API
+                    
                 });
 
             })
 
         })
-
-        
-
-
-    // let logindata = localStorage.getItem('loginData');
-    // logindata = JSON.parse(logindata);
-    // console.log(logindata.token);
-    // console.log(logindata.userId);
 
 } catch (error) {
     console.log("Non authentifié : " + error)

@@ -4,6 +4,7 @@ let works = await getWorks();
 let categories = await getCategories();
 
 const body = document.querySelector('body');
+let file = ''
 
 function listElemModal(works, modalListElement) {
     for (let index = 0; index < works.length; index++) {
@@ -108,7 +109,7 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
                 inputPictureElem.textContent = '';
                 inputPictureElem.accept='.jpg,.png';
                 inputPictureElem.style.display = 'none';
-                let file = ''
+                
                 let loadFile = (event) => { 
                             if (event.target.files[0].size > 4000000)
                                 {
@@ -156,6 +157,7 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
                 const catFormPictureElem = document.createElement('select');
                 // catFormPictureElem.type = 'select';
                 catFormPictureElem.classList.add('inputPicutreElem');
+                catFormPictureElem.classList.add('inputPicutreElemCat');
 
                 const defaultOption = document.createElement('option');
                 defaultOption.value = ''; 
@@ -188,8 +190,8 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
                 modal.appendChild(validPictureButtonElem);
 }
 
-export function postImage(file, catFormPictureElem){
-
+export function postImage(){
+        const catFormPictureElem = document.querySelector('.inputPicutreElemCat');
         const titleFormPictureElem = document.querySelector('.inputPicutreElem'); 
         console.log(titleFormPictureElem)
         let loginData = window.localStorage.getItem('loginData')
@@ -198,12 +200,10 @@ export function postImage(file, catFormPictureElem){
             'title': titleFormPictureElem.value.trim(),
             'image': file,
             'category': parseInt(catFormPictureElem.value)
-        };
-        
-        console.log(uploadImageData);
+        }
 
         postWorks(uploadImageData).then(resp => {
-            console.log(resp);
+            window.location = window.location.href;
         })
 
 };

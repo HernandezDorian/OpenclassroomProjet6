@@ -226,6 +226,7 @@ li:hover {
 	height: 100px;
 	background-position: center;
     background-size: contain;
+	background-repeat: no-repeat;
 	align-items: flex-end;
 }
 
