@@ -1,5 +1,5 @@
 import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
-// import { convertToBase64 } from "./modal.js";
+import { openModal, closeModal, uploadPhoto } from "./modal.js";
 
 
 let works = await getWorks();
@@ -116,9 +116,25 @@ try {
         modif.appendChild(textElement);
         modif.appendChild(imgElement);
 
-        modif.addEventListener('click', (e) => {
+        
+        modif.addEventListener('click', (e) => { // Le bouton modifier sur la page
+       
+            openModal(); // Ouvrir le popup
             
+            const cross = document.querySelector(".modal__cross") // La croix pour refermer le  popup
+            cross.addEventListener('click', (e) => {
+                closeModal(); // Fermer le popup
+            })
+
+            const postPicture = document.querySelector(".PostPicture") // La croix pour refermer le  popup
+            postPicture.addEventListener('click', (e) => {
+                e.preventDefault();
+                uploadPhoto(); // Se rendre dans la fenêtre d'upload
+            })
+
         })
+
+        
 
 
     // let logindata = localStorage.getItem('loginData');
