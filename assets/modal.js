@@ -203,7 +203,7 @@ export function postImage(){
         }
 
         postWorks(uploadImageData).then(resp => {
-            window.location = window.location.href;
+            window.location = window.location.href; // Rafraichir la page après avoir posté un élément ce qui permet de fermer le popup et d'afficher le nouvel élément 
         })
 
 };

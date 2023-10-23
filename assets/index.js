@@ -99,9 +99,14 @@ setFilter();
 setProjets(works);
 filterSelec();
 
+    let loginData = ''
+    loginData = localStorage.getItem('loginData');
+    loginData = JSON.parse(loginData);
+
+  
 try {
-        let loginData = localStorage.getItem('loginData');
-        loginData = JSON.parse(loginData);
+        if(loginData){
+
 
         // console.log("info: " + loginData.token + " | " +  loginData.userId + " | " + loginData)
 
@@ -129,18 +134,11 @@ try {
                         trash[index].addEventListener('click', (e) => {
                             console.log()
                             delWorks(works[index].id).then(resp => {
-                                window.location = window.location.href;
+                                window.location = window.location.href; // Rafraichir la page après avoir supprimé un élément
                             })
                             
                         })
                     }
-                    // console.log(element + " | " + index);
-                    
-                    // element.addEventListener('click', (e) => {
-    
-                    // });
-
-    
             }
             
             const cross = document.querySelector(".modal__cross");
@@ -178,7 +176,8 @@ try {
             })
 
         })
-
+            
+    }
 } catch (error) {
     console.log("Non authentifié : " + error)
 }
