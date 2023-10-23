@@ -1,5 +1,5 @@
 import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
-import { convertToBase64 } from "./modal.js";
+// import { convertToBase64 } from "./modal.js";
 
 
 let works = await getWorks();
