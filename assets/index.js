@@ -6,9 +6,6 @@ let works = await getWorks();
 let categories = await getCategories();
 
 
-console.log(works);
-console.log(categories);
-
 function setFilter(){
     for (let index = 0; index < categories.length; index++) {
         const filtersec = document.querySelector('.filter-sec');
@@ -106,10 +103,29 @@ filterSelec();
   
 try {
         if(loginData){
+        const edit = document.querySelector('.edit');
+        edit.style.display = "flex";
 
+        const loginBtn = document.querySelector('.loginBtn');
+        loginBtn.href="";
+        loginBtn.innerText="logout";
 
-        // console.log("info: " + loginData.token + " | " +  loginData.userId + " | " + loginData)
+        loginBtn.addEventListener('click', (e) => {
+            loginData = '';
+            localStorage.removeItem('loginData');
+        })
 
+        const editImg = document.createElement('img');
+        editImg.classList.add('editImg');
+        editImg.src = "assets/icons/whitemodif.svg"
+
+        const editTxt = document.createElement('p');
+        editTxt.classList.add('editTxt');
+        editTxt.innerText = "Mode édition"
+
+        edit.appendChild(editImg);
+        edit.appendChild(editTxt);
+        
         const modif = document.querySelector('.modif');
 
         const textElement = document.createElement('p');
@@ -120,7 +136,6 @@ try {
 
         modif.appendChild(textElement);
         modif.appendChild(imgElement);
-
         
         modif.addEventListener('click', (e) => { // Le bouton modifier sur la page
        
@@ -132,7 +147,7 @@ try {
                     if (index < works.length) {
                         
                         trash[index].addEventListener('click', (e) => {
-                            console.log()
+                            
                             delWorks(works[index].id).then(resp => {
                                 window.location = window.location.href; // Rafraichir la page après avoir supprimé un élément
                             })

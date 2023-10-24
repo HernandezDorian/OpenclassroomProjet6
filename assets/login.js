@@ -69,12 +69,11 @@ submit.addEventListener('click', (e) => {
     }
 try {
     if (validmail && validpass) {
-        console.log(email.value + " " + password.value);
+
         let data = {
             "email": email.value,
             "password": password.value
         };
-        console.log(JSON.stringify(data))
      
         postLogin(data).then((resp) => {
             if (resp.status === 200) {
@@ -83,7 +82,7 @@ try {
 
             
         })
-        console.log(validatelogin());
+        validatelogin();
     }
 } catch (error) {
     console.log("Erreur dans l'envoie des identifiants de connexion a postLogin")

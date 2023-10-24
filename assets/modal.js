@@ -5,11 +5,11 @@ let categories = await getCategories();
 
 const body = document.querySelector('body');
 let file = ''
+let errormsg = false
 
 function listElemModal(works, modalListElement) {
     for (let index = 0; index < works.length; index++) {
         const element = works[index];
-        // console.log(element);
         
         const photoElement = document.createElement('div');
         photoElement.classList.add(`modalElem_${element.id}`);
@@ -24,7 +24,6 @@ function listElemModal(works, modalListElement) {
 
         photoElement.appendChild(divtrash);
         divtrash.appendChild(trash);
-        // modalListElement.classList.add('');
         
     }
     
@@ -40,7 +39,6 @@ export function openModal() { // Ouvrir le popup
 
             const arrowElement = document.createElement('div');
             arrowElement.src = "assets/icons/arrow.svg";
-            // arrowElement.classList.add('modal__arrow', 'invisible');
 
             const crossElement = document.createElement('img');
             crossElement.src = "assets/icons/xmark.svg";
@@ -51,7 +49,6 @@ export function openModal() { // Ouvrir le popup
             modalTitleElement.classList.add('modal__title');
 
             const modalListElement = document.createElement('div');
-            // modalListElement.innerHTML = ``
             modalListElement.classList.add('modal__list');
 
             const buttonAddPictureElement = document.createElement('input');
@@ -77,6 +74,7 @@ export function openModal() { // Ouvrir le popup
 
 export function closeModal(modal) { // Fermer le popup
     modal.parentNode.removeChild(modal);
+    errormsg = false
 }
 
 export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
@@ -141,9 +139,6 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
                 const formPictureElem = document.createElement('form');
                 formPictureElem.classList.add('formPicture')
 
-                // const divFormPictureElem = document.createElement('div');
-                // divFormPictureElem.classList.add('divForm');
-
                 const titleLabelPictureElem = document.createElement('h3');
                 titleLabelPictureElem.innerHTML = 'Titre';
 
@@ -155,7 +150,6 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
                 catLabelPictureElem.innerHTML = 'Catégorie';
 
                 const catFormPictureElem = document.createElement('select');
-                // catFormPictureElem.type = 'select';
                 catFormPictureElem.classList.add('inputPicutreElem');
                 catFormPictureElem.classList.add('inputPicutreElemCat');
 
@@ -202,8 +196,22 @@ export function postImage(){
             'category': parseInt(catFormPictureElem.value)
         }
 
-        postWorks(uploadImageData).then(resp => {
-            window.location = window.location.href; // Rafraichir la page après avoir posté un élément ce qui permet de fermer le popup et d'afficher le nouvel élément 
-        })
+        if (uploadImageData.title && uploadImageData.image && uploadImageData.category)
+        {
+            postWorks(uploadImageData).then(resp => {
+                window.location = window.location.href; // Rafraichir la page après avoir posté un élément ce qui permet de fermer le popup et d'afficher le nouvel élément 
+            })
+        } else {
+            const errorMessage = document.createElement('p');
+            if (!errormsg){
+            console.log("tous les info")
+            const modal = document.querySelector('.modal');
+            const errorMessage = document.createElement('p');
+            errorMessage.innerText = "Veuillez rentrer toutes les informations";
+            errorMessage.classList.add('animeerror');
+            modal.appendChild(errorMessage);
+            errormsg = true
+            }
+        }
 
 };

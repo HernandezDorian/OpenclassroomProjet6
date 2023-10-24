@@ -52,16 +52,27 @@ a {
   }
 /** end reset css**/
 body {
-	max-width: 1140px;
+	display: flex;
+	flex-direction: column;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background: #FFFEF8;
+	
 }
 header {
+	max-width: 1140px;
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0;
+	margin: auto;
+	margin-top: 38px;
+	background: #FFFEF8;
+	width: 100vw;
+}
+main {
+	max-width: 1140px;
+	margin: auto;
+	background: #FFFEF8;
 }
 section {
 	margin: 50px 0
@@ -132,6 +143,17 @@ li:hover {
 	
 }
 
+/* Edit div */
+.edit{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background-color: #000;
+	color:#fff;
+	gap: 12px;
+	display: none;
+}
 /* modif button */
 .titleportfolio{
 	display: flex;
@@ -467,6 +489,12 @@ footer nav ul {
 }
 .errormessage{
 	color: red !important;
+}
+
+.animeerror{
+	animation: error 0.4s ease-in-out;
+	color: red !important;
+	border: none !important;
 }
 
 /* #footer-login{
