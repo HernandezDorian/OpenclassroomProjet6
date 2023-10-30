@@ -172,6 +172,13 @@ li:hover {
 }
 
 /* Modal */
+.bgmodal{
+	display: flex;
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	background: rgba(0, 0, 0, 0.30);
+}
 
 .modal{
 	display: flex;

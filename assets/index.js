@@ -6,7 +6,9 @@ let works = await getWorks();
 let categories = await getCategories();
 
 
-function setFilter(){
+
+
+function setFilter(){ 
     for (let index = 0; index < categories.length; index++) {
         const filtersec = document.querySelector('.filter-sec');
         
@@ -58,9 +60,9 @@ function filterSelec(){
 
 };
 
-function filterSelecRm(id){
-    id.classList.remove("filter-selec");
-};
+// function filterSelecRm(id){
+//     id.classList.remove("filter-selec");
+// };
 
 function setProjets(listeProjets){
     // switch (key) {
@@ -125,7 +127,7 @@ try {
 
         edit.appendChild(editImg);
         edit.appendChild(editTxt);
-        
+
         const modif = document.querySelector('.modif');
 
         const textElement = document.createElement('p');
@@ -141,6 +143,7 @@ try {
        
             openModal(); // Ouvrir le popup
 
+            // Ajouter ça en fonction
             const trash = document.querySelectorAll(".divtrash");
             for (let index = 0; index < trash.length+1; index++) {
                     const element = trash[index];
@@ -174,12 +177,9 @@ try {
                 })
                 const arrrowBack = document.querySelector(".modal__arrow") 
                     arrrowBack.addEventListener('click', (e) => {
-                        // const modal = document.querySelector('.modal');
                         cross.click();
                         modif.click();
                 })
-
-                // const btnUpload = document.querySelector(".btnUpload");
                 
                 const validPictureButtonElem = document.querySelector(".PostPicture");
                 validPictureButtonElem.addEventListener('click', (e)=>{

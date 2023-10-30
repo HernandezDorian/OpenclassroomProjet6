@@ -31,6 +31,8 @@ function listElemModal(works, modalListElement) {
 
 export function openModal() { // Ouvrir le popup
     try {
+            const bgmodal = document.createElement('div');
+            bgmodal.classList.add('bgmodal');
             const modal = document.createElement('div');
             modal.classList.add('modal');
 
@@ -55,16 +57,17 @@ export function openModal() { // Ouvrir le popup
             buttonAddPictureElement.type = 'submit';
             buttonAddPictureElement.value = 'Ajouter une photo'
             buttonAddPictureElement.classList.add('PostPicture')
-
-                    body.appendChild(modal);
-                    modal.innerHTML="";
-                    modalTitleElement.innerText = "Galerie photo"
-                    modal.appendChild(modalmenuElement);
-                    modalmenuElement.appendChild(arrowElement);
-                    modalmenuElement.appendChild(crossElement);
-                    modal.appendChild(modalTitleElement);
-                    modal.appendChild(modalListElement);
-                    modal.appendChild(buttonAddPictureElement);
+                    
+            body.appendChild(bgmodal);
+            body.appendChild(modal);
+            modal.innerHTML="";
+            modalTitleElement.innerText = "Galerie photo"
+            modal.appendChild(modalmenuElement);
+            modalmenuElement.appendChild(arrowElement);
+            modalmenuElement.appendChild(crossElement);
+            modal.appendChild(modalTitleElement);
+            modal.appendChild(modalListElement);
+            modal.appendChild(buttonAddPictureElement);
 
                     listElemModal(works, modalListElement);
     } catch (error) {
@@ -74,11 +77,14 @@ export function openModal() { // Ouvrir le popup
 
 export function closeModal(modal) { // Fermer le popup
     modal.parentNode.removeChild(modal);
+    const bgmodal = document.querySelector('.bgmodal');
+    bgmodal.parentNode.removeChild(bgmodal) = document.querySelector('.bgmodal');
     errormsg = false
 }
 
 export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
 
+                const bgmodal = document.querySelector('.bgmodal');
                 const modal = document.querySelector('.modal');
                 const modalmenuElement = document.querySelector('.modalmenu');
                 const modalTitleElement = document.querySelector('.modal__title');
