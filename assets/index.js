@@ -1,5 +1,5 @@
 import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
-import { openModal, closeModal, uploadPhoto, postImage } from "./modal.js";
+import { openModal, closeModal, uploadPhoto, postImage, refreshModal } from "./modal.js";
 
     let works = ''
     let categories = ''
@@ -162,6 +162,7 @@ try {
                                 
 
                                 refreshDOM();
+                                refreshModal();
                                 closeModal();
                                 
                                 
@@ -214,7 +215,9 @@ export async function refreshDOM(){
     DOM.innerHTML = '';
     works = await getWorks().then((e) => {
         setProjets(JSON.parse(JSON.stringify(e)));
+        console.log("RefreshDOM : " + e);
     })
+    
 
     
 }
