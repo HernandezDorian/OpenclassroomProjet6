@@ -88,7 +88,7 @@ export function closeModal() { // Fermer le popup
     const modal = document.querySelector('.modal');
     modal.parentNode.removeChild(modal);
     const bgmodal = document.querySelector('.bgmodal');
-    bgmodal.parentNode.removeChild(bgmodal) = document.querySelector('.bgmodal');
+    bgmodal.parentNode.removeChild(bgmodal);
     errormsg = false
 }
 

@@ -29,6 +29,33 @@ function setFilter(){
     }
 }
 
+function trash (){
+                
+            
+    let trash = document.querySelectorAll(".divtrash");
+    for (let index = 0; index < trash.length+1; index++) {
+            const element = trash[index];
+            if (index < works.length) {
+                
+                element.addEventListener('click', (e) => {
+                    
+                    delWorks(works[index].id).then(resp => {
+                        // window.location = window.location.href; // Rafraichir la page après avoir supprimé un élément
+                        
+
+                        refreshDOM();
+                        refreshModal();
+                        closeModal();
+                        
+                        
+
+                    })
+                    
+                })
+            }
+    }
+    };
+
 function filterSelec(){
     let actualselect = "filtre_0"
     let filter_0 = works
@@ -150,29 +177,7 @@ try {
             openModal(); // Ouvrir le popup
 
             // Ajouter ça en fonction
-            const trash = document.querySelectorAll(".divtrash");
-            for (let index = 0; index < trash.length+1; index++) {
-                    const element = trash[index];
-                    if (index < works.length) {
-                        
-                        trash[index].addEventListener('click', (e) => {
-                            
-                            delWorks(works[index].id).then(resp => {
-                                // window.location = window.location.href; // Rafraichir la page après avoir supprimé un élément
-                                
-
-                                refreshDOM();
-                                refreshModal();
-                                closeModal();
-                                
-                                
-
-                            })
-                            
-                        })
-                    }
-            }
-            
+            trash();
             const cross = document.querySelector(".modal__cross");
             
             cross.addEventListener('click', (e) => {
@@ -190,7 +195,7 @@ try {
                 })
                 const arrrowBack = document.querySelector(".modal__arrow") 
                     arrrowBack.addEventListener('click', (e) => {
-                        cross.click();
+                        closeModal();
                         modif.click();
                 })
                 
@@ -213,18 +218,14 @@ try {
 export async function refreshDOM(){
     let DOM = document.querySelector(".gallery");
     DOM.innerHTML = '';
-    works = await getWorks().then((e) => {
-        setProjets(JSON.parse(JSON.stringify(e)));
-        console.log("RefreshDOM : " + e);
-    })
+    // works = JSON.parse(JSON.stringify(await getWorks().then((e) => {
+    //     setProjets(e);
+    //     console.log("RefreshDOM : " + e);
+    // })))
     
+    await getWorks().then((e) => {
+        setProjets(JSON.parse(JSON.stringify(e)));
+    })
 
     
 }
-
-let test = document.querySelector(".test123")
-test.addEventListener('click', (e) => {
-    refreshDOM().then((e) => {
-        setProjets(JSON.parse(JSON.stringify(works)));
-    });
-});
