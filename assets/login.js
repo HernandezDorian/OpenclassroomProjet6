@@ -78,6 +78,10 @@ try {
         postLogin(data).then((resp) => {
             if (resp.status === 200) {
                 window.location.href = "./index.html";
+            } else if (resp.status === 401){
+                incorrect("#passdiv","Identifiant incorrect");
+            } else if (resp.status === 404){
+                incorrect("#passdiv","Utilisateur non inscrit");
             }
 
             

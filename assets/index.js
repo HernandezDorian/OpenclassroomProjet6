@@ -1,11 +1,16 @@
 import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
 import { openModal, closeModal, uploadPhoto, postImage } from "./modal.js";
 
+    let works = ''
+    let categories = ''
 
-let works = await getWorks();
-let categories = await getCategories();
+async function get(){
+    works = await getWorks();
+    categories = await getCategories();
+}
 
-
+await get();
+console.log(works);
 
 
 function setFilter(){ 
@@ -65,8 +70,9 @@ function filterSelec(){
 // };
 
 function setProjets(listeProjets){
-    // switch (key) {
+    // switch (key) {u
     //     case 0:
+    console.log("setProjects : " + listeProjets)
             for (let index = 0; index < listeProjets.length; index++) {
                 const gallery = document.querySelector('.gallery');
                 const figureElement = document.createElement('figure');
@@ -152,7 +158,14 @@ try {
                         trash[index].addEventListener('click', (e) => {
                             
                             delWorks(works[index].id).then(resp => {
-                                window.location = window.location.href; // Rafraichir la page après avoir supprimé un élément
+                                // window.location = window.location.href; // Rafraichir la page après avoir supprimé un élément
+                                
+
+                                refreshDOM();
+                                closeModal();
+                                
+                                
+
                             })
                             
                         })
@@ -163,7 +176,7 @@ try {
             
             cross.addEventListener('click', (e) => {
                 const modal = document.querySelector('.modal');
-                closeModal(modal); // Fermer le popup
+                closeModal(); // Fermer le popup
             })
 
             const postPicture = document.querySelector(".PostPicture") // Accès a la fenêtre d'upload
@@ -172,8 +185,7 @@ try {
                 uploadPhoto(); // Se rendre dans la fenêtre d'upload
                 
                 cross.addEventListener('click', (e) => { // La croix pour refermer le  popup
-                    const modal = document.querySelector('.modal');
-                    closeModal(modal); // Fermer le popup
+                    closeModal(); // Fermer le popup
                 })
                 const arrrowBack = document.querySelector(".modal__arrow") 
                     arrrowBack.addEventListener('click', (e) => {
@@ -196,3 +208,20 @@ try {
 } catch (error) {
     console.log("Non authentifié : " + error)
 }
+
+export async function refreshDOM(){
+    let DOM = document.querySelector(".gallery");
+    DOM.innerHTML = '';
+    works = await getWorks().then((e) => {
+        setProjets(JSON.parse(JSON.stringify(e)));
+    })
+
+    
+}
+
+let test = document.querySelector(".test123")
+test.addEventListener('click', (e) => {
+    refreshDOM().then((e) => {
+        setProjets(JSON.parse(JSON.stringify(works)));
+    });
+});

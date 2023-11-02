@@ -1,4 +1,5 @@
 import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
+import { refreshDOM } from "./index.js";
 
 let works = await getWorks();
 let categories = await getCategories();
@@ -7,10 +8,11 @@ const body = document.querySelector('body');
 let file = ''
 let errormsg = false
 
-function listElemModal(works, modalListElement) {
+async function listElemModal(works) {
     for (let index = 0; index < works.length; index++) {
         const element = works[index];
-        
+        const modalListElement = document.querySelector('.modal__list');
+
         const photoElement = document.createElement('div');
         photoElement.classList.add(`modalElem_${element.id}`);
         photoElement.classList.add('photoElement');
@@ -69,13 +71,14 @@ export function openModal() { // Ouvrir le popup
             modal.appendChild(modalListElement);
             modal.appendChild(buttonAddPictureElement);
 
-                    listElemModal(works, modalListElement);
+                    listElemModal(works);
     } catch (error) {
         console.log("Erreur dans openModal() : " + error)
     }
 }
 
-export function closeModal(modal) { // Fermer le popup
+export function closeModal() { // Fermer le popup
+    const modal = document.querySelector('.modal');
     modal.parentNode.removeChild(modal);
     const bgmodal = document.querySelector('.bgmodal');
     bgmodal.parentNode.removeChild(bgmodal) = document.querySelector('.bgmodal');
@@ -193,7 +196,6 @@ export function uploadPhoto(){ // Se rendre dans la fenêtre d'upload
 export function postImage(){
         const catFormPictureElem = document.querySelector('.inputPicutreElemCat');
         const titleFormPictureElem = document.querySelector('.inputPicutreElem'); 
-        console.log(titleFormPictureElem)
         let loginData = window.localStorage.getItem('loginData')
         loginData = JSON.parse(loginData);
         let uploadImageData = {
@@ -205,7 +207,18 @@ export function postImage(){
         if (uploadImageData.title && uploadImageData.image && uploadImageData.category)
         {
             postWorks(uploadImageData).then(resp => {
-                window.location = window.location.href; // Rafraichir la page après avoir posté un élément ce qui permet de fermer le popup et d'afficher le nouvel élément 
+                // window.location = window.location.href; // Rafraichir la page après avoir posté un élément ce qui permet de fermer le popup et d'afficher le nouvel élément 
+                console.log (resp);
+                let toPush = {
+                    title: uploadImageData.title,
+                    imageUrl: file,
+                    categoryId: uploadImageData.category
+                }
+                console.log (toPush);
+                refreshDOM();
+                closeModal();
+                works.push(uploadImageData);
+                
             })
         } else {
             const errorMessage = document.createElement('p');

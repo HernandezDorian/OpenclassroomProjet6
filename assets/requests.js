@@ -1,6 +1,8 @@
+const API = 'http://localhost:5678'
+
 export async function getWorks(){
     try {
-        const repWorks = await fetch('http://localhost:5678/api/works')
+        const repWorks = await fetch(API+'/api/works')
         let reponse = await repWorks.json();
         return reponse;
     } catch (error) {
@@ -11,7 +13,7 @@ export async function getWorks(){
 
 export async function getCategories(){
     try {
-        const repCategories = await fetch('http://localhost:5678/api/categories')
+        const repCategories = await fetch(API+'/api/categories')
         let reponse = await repCategories.json();
         return reponse;
     } catch (error) {
@@ -22,7 +24,7 @@ export async function getCategories(){
 
 export async function postLogin(data){
     try {
-        const resp = await fetch("http://localhost:5678/api/users/login", {
+        const resp = await fetch(API+'/api/users/login', {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(data)
@@ -44,12 +46,11 @@ export async function postWorks(data){
     try {
         let loginData = localStorage.getItem('loginData');
         loginData = JSON.parse(loginData);
-        console.log(data);
         const formData = new FormData();
         formData.append('title', data.title);
         formData.append('category', data.category);
         formData.append('image', data.image);
-        const resp = await fetch("http://localhost:5678/api/works", {
+        const resp = await fetch(API+'/api/works', {
         method: "POST",
         headers: {
                 'Authorization': `Bearer ${loginData.token}`
@@ -69,7 +70,7 @@ export async function delWorks(data){
         let loginData = localStorage.getItem('loginData');
         loginData = JSON.parse(loginData);
 
-        const resp = await fetch('http://localhost:5678/api/works/'+data, 
+        const resp = await fetch(API+'/api/works/'+data, 
         { 
         method: 'DELETE',
         headers: {'Authorization': `Bearer ${loginData.token}`}
