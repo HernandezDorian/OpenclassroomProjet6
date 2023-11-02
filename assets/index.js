@@ -225,6 +225,7 @@ export async function refreshDOM(){
     
     await getWorks().then((e) => {
         setProjets(JSON.parse(JSON.stringify(e)));
+        works = (JSON.parse(JSON.stringify(e)));
     })
 
     
