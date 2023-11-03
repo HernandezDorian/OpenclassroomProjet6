@@ -9,6 +9,7 @@ categories = await getCategories();
 get();
 export async function refreshModal() {
     works = await getWorks();
+    refreshDOM();
 };
 
 const body = document.querySelector('body');

@@ -10,7 +10,6 @@ async function get(){
 }
 
 await get();
-console.log(works);
 
 
 function setFilter(){ 
@@ -99,7 +98,6 @@ function filterSelec(){
 function setProjets(listeProjets){
     // switch (key) {u
     //     case 0:
-    console.log("setProjects : " + listeProjets)
             for (let index = 0; index < listeProjets.length; index++) {
                 const gallery = document.querySelector('.gallery');
                 const figureElement = document.createElement('figure');
@@ -222,7 +220,7 @@ export async function refreshDOM(){
     //     setProjets(e);
     //     console.log("RefreshDOM : " + e);
     // })))
-    
+    filterSelec();
     await getWorks().then((e) => {
         setProjets(JSON.parse(JSON.stringify(e)));
         works = (JSON.parse(JSON.stringify(e)));
