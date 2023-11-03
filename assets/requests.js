@@ -1,4 +1,4 @@
-const API = 'http://localhost:5678'
+const API = 'http://localhost:5678' // Mettre l'adresse de l'API ici
 
 export async function getWorks(){
     try {

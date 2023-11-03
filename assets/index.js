@@ -57,33 +57,16 @@ function trash (){
 
 function filterSelec(){
     let actualselect = "filtre_0"
-    let filter_0 = works
-    let filter_1 = works.filter(item => item.category.id === 1);
-    let filter_2 = works.filter(item => item.category.id === 2);
-    let filter_3 = works.filter(item => item.category.id === 3);
     for (let index = 0; index < categories.length + 1; index++) {
         document.getElementById(`filtre_${index}`).addEventListener('click', function(){
             document.getElementById(`filtre_${index}`).classList.add("filter-selec");
             document.getElementById(actualselect).classList.remove("filter-selec");
             actualselect = `filtre_${index}`
             document.querySelector(".gallery").innerHTML = "";
-            
-            switch (actualselect) {
-                case "filtre_0":
-                    setProjets(filter_0);
-                    break;
-            
-                case "filtre_1":
-                    setProjets(filter_1);
-                    break;
-                    
-                case "filtre_2":
-                    setProjets(filter_2);
-                    break;
-                    
-                case "filtre_3":
-                    setProjets(filter_3);
-                    break;
+            if (index === 0){
+                setProjets(works)
+            } else {
+                setProjets(works.filter(item => item.category.id === index))
             }
             
         });
