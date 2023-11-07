@@ -112,7 +112,14 @@ filterSelec();
     loginData = localStorage.getItem('loginData');
     loginData = JSON.parse(loginData);
 
-  
+function crossClick(){
+    const cross = document.querySelector(".modal__cross");
+    cross.addEventListener('click', (e) => {
+        // const modal = document.querySelector('.modal');
+        closeModal(); // Fermer le popup
+    })
+};
+
 try {
         if(loginData){
         const edit = document.querySelector('.edit');
@@ -155,21 +162,14 @@ try {
 
             // Ajouter ça en fonction
             trash();
-            const cross = document.querySelector(".modal__cross");
             
-            cross.addEventListener('click', (e) => {
-                // const modal = document.querySelector('.modal');
-                closeModal(); // Fermer le popup
-            })
+            crossClick(); 
 
             const postPicture = document.querySelector(".PostPicture") // Accès a la fenêtre d'upload
             postPicture.addEventListener('click', (e) => {
                 e.preventDefault();
                 uploadPhoto(); // Se rendre dans la fenêtre d'upload
-                
-                cross.addEventListener('click', (e) => { // La croix pour refermer le  popup
-                    closeModal(); // Fermer le popup
-                })
+
                 const arrrowBack = document.querySelector(".modal__arrow") 
                     arrrowBack.addEventListener('click', (e) => {
                         closeModal();

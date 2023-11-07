@@ -90,7 +90,6 @@ export function openModal() { // Ouvrir le popup
 
 export function closeModal() { // Fermer le popup
     const modal = document.querySelector('.modal');
-    console.log(modal)
     modal.parentNode.removeChild(modal);
     const bgmodal = document.querySelector('.bgmodal');
     bgmodal.parentNode.removeChild(bgmodal);
