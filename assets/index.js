@@ -158,7 +158,7 @@ try {
             const cross = document.querySelector(".modal__cross");
             
             cross.addEventListener('click', (e) => {
-                const modal = document.querySelector('.modal');
+                // const modal = document.querySelector('.modal');
                 closeModal(); // Fermer le popup
             })
 

@@ -66,7 +66,6 @@ export async function postWorks(data){
 export async function delWorks(data){
 
     try {
-        console.log(data);
         let loginData = localStorage.getItem('loginData');
         loginData = JSON.parse(loginData);
 

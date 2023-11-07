@@ -90,6 +90,7 @@ export function openModal() { // Ouvrir le popup
 
 export function closeModal() { // Fermer le popup
     const modal = document.querySelector('.modal');
+    console.log(modal)
     modal.parentNode.removeChild(modal);
     const bgmodal = document.querySelector('.bgmodal');
     bgmodal.parentNode.removeChild(bgmodal);
@@ -163,14 +164,14 @@ export function uploadPhoto() { // Se rendre dans la fenêtre d'upload
 
     const titleFormPictureElem = document.createElement('input');
     titleFormPictureElem.type = 'text';
-    titleFormPictureElem.classList.add('inputPicutreElem');
+    titleFormPictureElem.classList.add('inputPictureElem');
 
     const catLabelPictureElem = document.createElement('h3');
     catLabelPictureElem.innerHTML = 'Catégorie';
 
     const catFormPictureElem = document.createElement('select');
-    catFormPictureElem.classList.add('inputPicutreElem'); // Picture
-    catFormPictureElem.classList.add('inputPicutreElemCat'); // Picture
+    catFormPictureElem.classList.add('inputPictureElem'); // Picture
+    catFormPictureElem.classList.add('inputPictureElemCat'); // Picture
 
     const defaultOption = document.createElement('option');
     defaultOption.value = '';
@@ -209,8 +210,8 @@ export function uploadPhoto() { // Se rendre dans la fenêtre d'upload
 }
 
 export function postImage() {
-    const catFormPictureElem = document.querySelector('.inputPicutreElemCat');
-    const titleFormPictureElem = document.querySelector('.inputPicutreElem');
+    const catFormPictureElem = document.querySelector('.inputPictureElemCat');
+    const titleFormPictureElem = document.querySelector('.inputPictureElem');
     let loginData = window.localStorage.getItem('loginData')
     loginData = JSON.parse(loginData);
     let uploadImageData = {
@@ -235,7 +236,6 @@ export function postImage() {
     } else {
         const errorMessage = document.createElement('p');
         if (!errormsg) {
-            console.log("tous les info")
             const modal = document.querySelector('.modal');
             const errorMessage = document.createElement('p');
             errorMessage.innerText = "Veuillez rentrer toutes les informations";

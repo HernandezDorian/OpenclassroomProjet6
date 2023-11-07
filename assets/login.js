@@ -52,7 +52,6 @@ submit.addEventListener('click', (e) => {
         email.classList.add('errorform');
         incorrect("#maildiv","L'email n'est pas conforme")
         sleep(500).then(() => { email.classList.remove('errorform'); });
-        console.log("erreur dans l'email");
         validmail = false;
     }
 
@@ -64,7 +63,6 @@ submit.addEventListener('click', (e) => {
         password.classList.add('errorform');
         incorrect("#passdiv","Le mot de passe est vide")
         sleep(500).then(() => { password.classList.remove('errorform'); });
-        console.log("erreur dans le mot de passe");
         validpass = false;
     }
 try {
