@@ -1,18 +1,18 @@
-import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
+import { getWorks, getCategories, delWorks } from "./requests.js";
 import { openModal, closeModal, uploadPhoto, postImage, refreshModal } from "./modal.js";
 
     let works = ''
     let categories = ''
 
-async function get(){
+async function get(){ // Récupération des informations utiles dans l'api pour générer la page
     works = await getWorks();
     categories = await getCategories();
 }
 
-await get();
+await get(); 
 
 
-function setFilter(){ 
+function setFilter(){  // Création des filtres en fonction de l'API
     for (let index = 0; index < categories.length; index++) {
         const filtersec = document.querySelector('.filter-sec');
         
@@ -79,7 +79,7 @@ function filterSelec(){
 
 
 
-function setProjets(listeProjets){
+function setProjets(listeProjets){ // Création des projets 
 
             for (let index = 0; index < listeProjets.length; index++) {
                 const gallery = document.querySelector('.gallery');
@@ -189,16 +189,14 @@ try {
             
     }
 } catch (error) {
-    console.log("Non authentifié : " + error)
+    console.log("Erreur dans le processus d'authentification : " + error)
 }
+
+
 
 export async function refreshDOM(){
     let DOM = document.querySelector(".gallery");
     DOM.innerHTML = '';
-    // works = JSON.parse(JSON.stringify(await getWorks().then((e) => {
-    //     setProjets(e);
-    //     console.log("RefreshDOM : " + e);
-    // })))
     filterSelec();
     await getWorks().then((e) => {
         setProjets(JSON.parse(JSON.stringify(e)));

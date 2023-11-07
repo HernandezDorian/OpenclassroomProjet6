@@ -441,6 +441,19 @@ footer nav ul {
 	
 }
 
+/* Figure */
+.gallery figure{
+	display: grid;
+}
+
+.gallery figure img{
+	align-self: center;
+}
+
+.gallery figcaption{
+	margin-top: auto;
+}
+
 /* Login page */
 #body-login{
 	display: flex;
@@ -491,11 +504,11 @@ footer nav ul {
 }
 
 .errorform{
-	animation: error 0.4s ease-in-out;
 	border: 1px solid black;
 }
 .errormessage{
 	color: red !important;
+	animation: error 0.4s ease-in-out;
 }
 
 .animeerror{
@@ -504,46 +517,10 @@ footer nav ul {
 	border: none !important;
 }
 
-/* #footer-login{
-	display: flex;
-	justify-content: end;
-} */
-
-/* Animations */
-
 @keyframes error {
-	0% {
-		border: 1px solid red;
-		translate: 0, 0;
-    }
-	10%{
-		translate: 3px 0;
-	}
-	20%{
-		translate: 0 3px;
-	}
-	30%{
-		translate: -3px 0;
-	}
-	40%{
-        translate: 0 -3px;
-    }
-	50%{
-        translate: 3px 0;
-    }
-	60%{
-        translate: 0 3px;
-    }
-	70%{
-        translate: -3px 0;
-    }
-	80%{
-        translate: 0 -3px;
-    }
-	90%{
-		translate: 0, 0;
-	}
-	100% {
-        border: 1px solid black;
-    }
-}
+	0% { transform: translateX(0) }
+	25% { transform: translateX(5px) }
+	50% { transform: translateX(-5px) }
+	75% { transform: translateX(5px) }
+	100% { transform: translateX(0) }
+  }

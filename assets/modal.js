@@ -1,4 +1,4 @@
-import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
+import { getWorks, getCategories, postWorks } from "./requests.js";
 import { refreshDOM } from "./index.js";
 let works = ''
 let categories = ''
