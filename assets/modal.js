@@ -2,11 +2,14 @@ import { getWorks, getCategories, delWorks, postWorks } from "./requests.js";
 import { refreshDOM } from "./index.js";
 let works = ''
 let categories = ''
+
 async function get(){
 works = await getWorks();
 categories = await getCategories();
 }
+
 get();
+
 export async function refreshModal() {
     works = await getWorks();
     refreshDOM();
@@ -166,8 +169,8 @@ export function uploadPhoto() { // Se rendre dans la fenêtre d'upload
     catLabelPictureElem.innerHTML = 'Catégorie';
 
     const catFormPictureElem = document.createElement('select');
-    catFormPictureElem.classList.add('inputPicutreElem');
-    catFormPictureElem.classList.add('inputPicutreElemCat');
+    catFormPictureElem.classList.add('inputPicutreElem'); // Picture
+    catFormPictureElem.classList.add('inputPicutreElemCat'); // Picture
 
     const defaultOption = document.createElement('option');
     defaultOption.value = '';
@@ -187,16 +190,21 @@ export function uploadPhoto() { // Se rendre dans la fenêtre d'upload
 
     modalmenuElement.appendChild(modalArrowBack);
     modalmenuElement.appendChild(crossElement);
+
     modal.appendChild(divPictureElem);
+
     divPictureElem.appendChild(pictureElem);
     divPictureElem.appendChild(inputPictureElem);
     divPictureElem.appendChild(buttonPictureElem);
     divPictureElem.appendChild(infoPictureElem);
+
     modal.appendChild(formPictureElem);
+
     formPictureElem.appendChild(titleLabelPictureElem);
     formPictureElem.appendChild(titleFormPictureElem);
     formPictureElem.appendChild(catLabelPictureElem);
     formPictureElem.appendChild(catFormPictureElem);
+
     modal.appendChild(validPictureButtonElem);
 }
 
@@ -217,6 +225,11 @@ export function postImage() {
             refreshDOM();
             refreshModal();
             closeModal();
+
+            if (resp.status === 401) {
+                localStorage.removeItem("loginData");   
+                window.location = window.location.href;                
+            }
 
         })
     } else {

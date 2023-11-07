@@ -38,14 +38,17 @@ function trash (){
                 
                 element.addEventListener('click', (e) => {
                     
-                    delWorks(works[index].id).then(resp => {
-                        // window.location = window.location.href; // Rafraichir la page après avoir supprimé un élément
+                    delWorks(works[index].id).then(resp => {    
                         
+                        if (resp.status === 401) {
+                            localStorage.removeItem("loginData");   
+                            window.location = window.location.href;                
+                        }
 
+                        
                         refreshDOM();
                         refreshModal();
                         closeModal();
-                        
                         
 
                     })
@@ -61,7 +64,7 @@ function filterSelec(){
         document.getElementById(`filtre_${index}`).addEventListener('click', function(){
             document.getElementById(`filtre_${index}`).classList.add("filter-selec");
             document.getElementById(actualselect).classList.remove("filter-selec");
-            actualselect = `filtre_${index}`
+            actualselect = `filtre_${index}`;
             document.querySelector(".gallery").innerHTML = "";
             if (index === 0){
                 setProjets(works)
@@ -74,13 +77,10 @@ function filterSelec(){
 
 };
 
-// function filterSelecRm(id){
-//     id.classList.remove("filter-selec");
-// };
+
 
 function setProjets(listeProjets){
-    // switch (key) {u
-    //     case 0:
+
             for (let index = 0; index < listeProjets.length; index++) {
                 const gallery = document.querySelector('.gallery');
                 const figureElement = document.createElement('figure');
@@ -100,11 +100,7 @@ function setProjets(listeProjets){
                 figureElement.appendChild(imageElement);
                 figureElement.appendChild(figCaptionElement);
             }
-            // gallery.innerHTML += `<figure><img src="${works[index].imageUrl}"><figcaption>${works[index].title}</figcaption></figure>`
-    //     break;
-    
-        
-    // }
+
 
 };
 
@@ -112,7 +108,7 @@ setFilter();
 setProjets(works);
 filterSelec();
 
-    let loginData = ''
+    let loginData = '';
     loginData = localStorage.getItem('loginData');
     loginData = JSON.parse(loginData);
 
