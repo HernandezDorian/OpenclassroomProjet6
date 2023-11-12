@@ -1,8 +1,8 @@
 import { getWorks, getCategories, delWorks } from "./requests.js";
 import { openModal, closeModal, uploadPhoto, postImage, refreshModal } from "./modal.js";
 
-    let works = ''
-    let categories = ''
+    let works = []
+    let categories = []
 
 async function get(){ // Récupération des informations utiles dans l'api pour générer la page
     works = await getWorks();
@@ -44,9 +44,6 @@ function trash (){
                             localStorage.removeItem("loginData");   
                             window.location = window.location.href;                
                         }
-
-                        
-                        refreshDOM();
                         refreshModal();
                         closeModal();
                         
@@ -115,7 +112,6 @@ filterSelec();
 function crossClick(){
     const cross = document.querySelector(".modal__cross");
     cross.addEventListener('click', (e) => {
-        // const modal = document.querySelector('.modal');
         closeModal(); // Fermer le popup
     })
 };
